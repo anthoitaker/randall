@@ -1,0 +1,13 @@
+
+randall:
+  image: anthoitaker/randall
+  environment:
+    - DEBUG=False
+  volumes:
+    - "/data/randall:/data/randall"
+  expose:
+    - 9000
+  ports:
+    - "9000:9000"
+  command: ["gunicorn", "config.wsgi", "-b", "0.0.0.0:9000"]
+  
