@@ -6,3 +6,9 @@ run:
 
 inspect:
 		docker exec -it randall-service /bin/bash
+
+build:
+		docker build -t anthoitaker/randall .
+
+push:
+		docker push anthoitaker/randall
