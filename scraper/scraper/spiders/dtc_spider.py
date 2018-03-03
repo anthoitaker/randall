@@ -3,11 +3,7 @@ import scrapy
 
 class DtcSpider(scrapy.Spider):
     name = "codigosdtc"
-
-    def start_requests(self):
-        urls = ['https://codigosdtc.com/p0303/']
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
+    start_urls = ['https://codigosdtc.com/p0303/']
 
     def parse(self, response):
         code = response.url.split("/")[-2]
