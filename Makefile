@@ -1,5 +1,5 @@
 
-.PHONY: run inspect
+.PHONY: run inspect build push
 
 run:
 		docker-compose run --rm --name randall-service --service-ports randall
