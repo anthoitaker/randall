@@ -7,7 +7,10 @@ class DtcSpider(scrapy.Spider):
     NON_BREAK_SPACE = u'\xa0'
 
     name = 'codigosdtc'
-    start_urls = ['https://codigosdtc.com/p0303/']
+
+    def __init__(self, code=None, *args, **kwargs):
+        super(DtcSpider, self).__init__(*args, **kwargs)
+        self.start_urls = ['https://codigosdtc.com/{}/'.format(code)]
 
     def parse(self, response):
         yield {
