@@ -41,7 +41,8 @@ class DtcSpider(scrapy.Spider):
 
     def _extract_system(self, response):
         system = response.css('span.level::text').extract_first()
-        return system
+        clean_system = system.capitalize()
+        return clean_system
 
     def _extract_description(self, response):
         paragraphs = response.css('div.text p').extract()
