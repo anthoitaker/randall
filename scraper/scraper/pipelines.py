@@ -33,7 +33,7 @@ class CleanDataPipeline(object):
         return clean_system
 
     def _clean_description(self, description):
-        description = '\n'.join(description)
+        description = '\n\n'.join(description)
         clean_description = self._clean_text(description, dot=True)
         return clean_description
 
