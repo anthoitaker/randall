@@ -1,6 +1,6 @@
 import scrapy
 from scrapy.loader import ItemLoader
-from scraper.items import TroubleItem
+from scraper.scraper.items import TroubleItem
 
 
 class DtcSpider(scrapy.Spider):

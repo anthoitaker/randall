@@ -119,3 +119,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Scrapy
+# https://doc.scrapy.org/en/latest/topics/settings.html
+
+SCRAPY_SETTINGS_MODULE = 'scraper.scraper.settings'
