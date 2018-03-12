@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import re
+from core.models import Trouble, System, Symptom, Cause, Solution
+
 
 class CleanDataPipeline(object):
     TAG_RE = re.compile(r'<[^>]+>')
@@ -46,3 +48,43 @@ class CleanDataPipeline(object):
 
     def _clean_text_list(self, text_list):
         return [self._clean_text(text, dot=True) for text in text_list]
+
+
+class StorePipeline(object):
+
+    def process_item(self, item, spider):
+        system = self._get_or_create_system(item)
+        trouble = self._create_trouble(item, system)
+        self._create_symptoms(item, trouble)
+        self._create_causes(item, trouble)
+        self._create_solutions(item, trouble)
+        return item
+
+    def _get_or_create_system(self, item):
+        if item.get('system'):
+            system, _ = System.objects.get_or_create(name=item['system'])
+        else:
+            system = None
+
+        return system
+
+    def _create_trouble(self, item, system):
+        return Trouble.objects.create(
+            code=item['code'],
+            title=item['title'],
+            original_title=item['original_title'],
+            description=item['description'],
+            system=system
+        )
+
+    def _create_symptoms(self, item, trouble):
+        for symptom_desc in item['symptoms']:
+            Symptom.objects.create(description=symptom_desc, trouble=trouble)
+
+    def _create_causes(self, item, trouble):
+        for cause_desc in item['causes']:
+            Cause.objects.create(description=cause_desc, trouble=trouble)
+
+    def _create_solutions(self, item, trouble):
+        for solution_desc in item['solutions']:
+            Solution.objects.create(description=solution_desc, trouble=trouble)
