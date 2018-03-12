@@ -26,7 +26,7 @@ class Trouble(BaseModel):
     title = models.CharField('Title', max_length=200)
     original_title = models.CharField('Original Title', max_length=200)
     description = models.TextField('Description')
-    system = models.ForeignKey(System, null=True, on_delete=models.SET_NULL)
+    system = models.ForeignKey(System, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.code
