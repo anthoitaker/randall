@@ -10,7 +10,7 @@ class CleanDataPipeline(object):
         item['code'] = self._clean_code(item['code'])
         item['title'] = self._clean_title(item['title'])
         item['original_title'] = self._clean_title(item['original_title'])
-        item['system'] = self._clean_system(item['system']) if item['system'] else None
+        item['system'] = self._clean_system(item['system']) if item.get('system') else None
         item['description'] = self._clean_description(item['description'])
         item['symptoms'] = self._clean_text_list(item['symptoms'])
         item['causes'] = self._clean_text_list(item['causes'])
