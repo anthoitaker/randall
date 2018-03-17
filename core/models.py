@@ -36,6 +36,20 @@ class Trouble(BaseModel):
         verbose_name_plural = 'troubles'
         ordering = ['code']
 
+    def get_system_name(self):
+        return self.system.name if self.system else None
+
+    def list_symptoms(self):
+        symptoms = Symptom.objects.filter(trouble=self.id)
+        return symptoms.values_list('description', flat=True)
+
+    def list_causes(self):
+        causes = Cause.objects.filter(trouble=self.id)
+        return causes.values_list('description', flat=True)
+
+    def list_solutions(self):
+        solutions = Solution.objects.filter(trouble=self.id)
+        return solutions.values_list('description', flat=True)
 
 class Symptom(BaseModel):
     description = models.TextField('Description')
