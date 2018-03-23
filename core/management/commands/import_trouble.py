@@ -1,9 +1,5 @@
-import os
 from django.core.management import BaseCommand
-from scrapy.crawler import CrawlerProcess
-from scrapy.utils.project import get_project_settings
-from scraper.scraper.spiders.dtc_spider import DtcSpider
-from config.settings import SCRAPY_SETTINGS_MODULE
+from scraper.scraper.utils import import_trouble
 
 
 class Command(BaseCommand):
@@ -14,7 +10,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         code = options['code']
-        os.environ.setdefault('SCRAPY_SETTINGS_MODULE', SCRAPY_SETTINGS_MODULE)
-        process = CrawlerProcess(get_project_settings())
-        process.crawl(DtcSpider, code=code)
-        process.start()
+        import_trouble(code)
