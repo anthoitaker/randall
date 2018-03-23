@@ -1,4 +1,5 @@
 from django.db import models
+from scraper.scraper.utils import import_trouble
 
 
 class BaseModel(models.Model):
@@ -35,6 +36,15 @@ class Trouble(BaseModel):
         verbose_name = 'trouble'
         verbose_name_plural = 'troubles'
         ordering = ['code']
+
+    @classmethod
+    def get_trouble(cls, code):
+        found = cls.objects.filter(code=code).exists()
+
+        if not found:
+            import_trouble(code)
+
+        return cls.objects.get(code=code)
 
     def get_system_name(self):
         return self.system.name if self.system else None

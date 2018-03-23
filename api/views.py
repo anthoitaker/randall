@@ -21,6 +21,6 @@ class TroubleDetail(APIView):
     def get_object(self, code):
         try:
             code = code.upper()
-            return Trouble.objects.get(code=code)
+            return Trouble.get_trouble(code)
         except Trouble.DoesNotExist:
             raise Http404
