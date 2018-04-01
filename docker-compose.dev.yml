@@ -1,0 +1,13 @@
+randall:
+  image: anthoitaker/randall
+  env_file:
+    - .env
+  volumes:
+    - "/data/randall:/data/randall"
+    - ".:/code"
+  expose:
+    - 9000
+  ports:
+    - "9000:9000"
+  entrypoint: ["python", "manage.py"]
+  command: ["runserver", "0.0.0.0:9000"]

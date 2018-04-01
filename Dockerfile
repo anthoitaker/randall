@@ -12,6 +12,6 @@ ADD . /code
 
 VOLUME /data/randall
 
-EXPOSE 9000
+EXPOSE 80
 
-CMD ["gunicorn", "config.wsgi", "-b", "0.0.0.0:9000"]
+CMD ["gunicorn", "config.wsgi", "-b", "0.0.0.0:80"]

@@ -2,11 +2,12 @@ randall:
   image: anthoitaker/randall
   environment:
     - DEBUG=False
+    - SECRET_KEY=${RANDALL_SECRET_KEY}
+    - ALLOWED_HOST=${RANDALL_ALLOWED_HOST}
   volumes:
-    - "/data/randall:/data/randall"
+    - "${RANDALL_VOLUME_DIR}:/data/randall"
   expose:
-    - 9000
+    - 80
   ports:
-    - "9000:9000"
-  command: ["gunicorn", "config.wsgi", "-b", "0.0.0.0:9000"]
-  
+    - "80:80"
+  command: ["gunicorn", "config.wsgi", "-b", "0.0.0.0:80"]

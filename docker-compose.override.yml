@@ -1,7 +1,0 @@
-randall:
-  environment:
-    - DEBUG=True
-  volumes:
-    - ".:/code"
-  entrypoint: ["python", "manage.py"]
-  command: ["runserver", "0.0.0.0:9000"]

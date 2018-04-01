@@ -1,8 +1,10 @@
+DOCKER_COMPOSE = docker-compose -f docker-compose.dev.yml
+DRUN = $(DOCKER_COMPOSE) run --rm
 
 .PHONY: run inspect build push
 
 run:
-		docker-compose run --rm --name randall-service --service-ports randall
+		$(DRUN) --name randall-service --service-ports randall
 
 inspect:
 		docker exec -it randall-service /bin/bash
