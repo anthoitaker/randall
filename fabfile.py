@@ -14,4 +14,4 @@ def update():
 def deploy():
     with cd(REMOTE_APP_DIR):
         run('docker-compose -f deploy.yml pull')
-        run('docker-compose -f deploy.yml restart')
+        run('docker-compose -f deploy.yml up -d randall')
