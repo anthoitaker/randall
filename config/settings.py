@@ -128,3 +128,13 @@ STATIC_URL = '/static/'
 # https://doc.scrapy.org/en/latest/topics/settings.html
 
 SCRAPY_SETTINGS_MODULE = 'scraper.scraper.settings'
+
+
+# Django REST framework
+# http://www.django-rest-framework.org/#api-guide
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+}
