@@ -11,3 +11,12 @@ randall:
     - "9000:9000"
   entrypoint: ["python", "manage.py"]
   command: ["runserver", "0.0.0.0:9000"]
+
+fabric:
+  image: geshan/fabric-alpine
+  env_file:
+    - .env
+  volumes:
+    - "${SSH_AUTH_SOCK}:/ssh-agent"
+    - ".:/app"
+  entrypoint: ["fab"]
