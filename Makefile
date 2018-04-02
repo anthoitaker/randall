@@ -1,7 +1,7 @@
 DOCKER_COMPOSE = docker-compose -f docker-compose.dev.yml
 DRUN = $(DOCKER_COMPOSE) run --rm
 
-.PHONY: run inspect build push update deploy
+.PHONY: run inspect build push fab-update fab-deploy
 
 run:
 		$(DRUN) --name randall-service --service-ports randall
@@ -15,8 +15,8 @@ build:
 push:
 		docker push anthoitaker/randall
 
-update:
+fab-update:
 		$(DRUN) --name randall-fab fabric update
 
-deploy:
+fab-deploy:
 		$(DRUN) --name randall-fab fabric deploy
