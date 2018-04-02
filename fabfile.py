@@ -15,3 +15,5 @@ def deploy():
     with cd(REMOTE_APP_DIR):
         run('docker-compose -f deploy.yml pull')
         run('docker-compose -f deploy.yml up -d randall')
+        run('docker exec -it randall-service python manage.py migrate')
+        run('docker exec -it randall-service python manage.py collectstatic --noinput')

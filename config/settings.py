@@ -123,6 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 # Scrapy
 # https://doc.scrapy.org/en/latest/topics/settings.html

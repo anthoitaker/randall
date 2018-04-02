@@ -1,5 +1,6 @@
 randall:
   image: anthoitaker/randall
+  container_name: randall-service
   environment:
     - DEBUG=False
     - SECRET_KEY=${RANDALL_SECRET_KEY}
