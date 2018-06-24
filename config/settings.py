@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'raven.contrib.django.raven_compat',
     'rest_framework',
     'core',
     'api',
@@ -139,4 +140,12 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
     ),
+}
+
+
+# Sentry
+# https://docs.sentry.io/clients/python/integrations/django/
+
+RAVEN_CONFIG = {
+    'dsn': os.getenv('SENTRY_DSN'),
 }

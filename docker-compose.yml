@@ -5,6 +5,7 @@ randall:
     - DEBUG=False
     - SECRET_KEY=${RANDALL_SECRET_KEY}
     - ALLOWED_HOST=${RANDALL_ALLOWED_HOST}
+    - SENTRY_DSN=${RANDALL_SENTRY_DSN}
   volumes:
     - "${RANDALL_VOLUME_DIR}:/data/randall"
   expose:
