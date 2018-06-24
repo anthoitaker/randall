@@ -1,0 +1,17 @@
+# CircleCI 2.0 configuration file
+
+version: 2
+
+general:
+  branches:
+    only:
+      - master
+
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t anthoitaker/randall .
+      - run: docker push anthoitaker/randall
