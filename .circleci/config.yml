@@ -2,11 +2,6 @@
 
 version: 2
 
-general:
-  branches:
-    only:
-      - master
-
 jobs:
   build:
     machine: true
@@ -18,6 +13,11 @@ jobs:
 
 workflows:
   version: 2
-  build:
+  CI:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
