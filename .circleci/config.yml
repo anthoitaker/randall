@@ -8,16 +8,18 @@ jobs:
     steps:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t anthoitaker/randall:$CIRCLE_TAG .
       - run: docker build -t anthoitaker/randall .
+      - run: docker push anthoitaker/randall:$CIRCLE_TAG
       - run: docker push anthoitaker/randall
 
 workflows:
   version: 2
-  CI:
+  build:
     jobs:
       - build:
           filters:
             branches:
               ignore: /.*/
             tags:
-              only: /^v.*/
+              only: /.*/
