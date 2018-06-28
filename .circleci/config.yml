@@ -8,6 +8,7 @@ jobs:
     steps:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: echo $CIRCLE_TAG > version.txt
       - run: docker build -t anthoitaker/randall:$CIRCLE_TAG .
       - run: docker build -t anthoitaker/randall .
       - run: docker push anthoitaker/randall:$CIRCLE_TAG
