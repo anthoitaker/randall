@@ -18,7 +18,7 @@ jobs:
     steps:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: export -p | awk '{print $3}' > .env
+      - run: printenv > .env
       - run: make fab-update
       - run: make fab-deploy
 
