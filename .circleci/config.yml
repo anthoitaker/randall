@@ -21,7 +21,11 @@ jobs:
           fingerprints:
             - "50:0a:21:c1:3a:1e:7a:c2:f7:48:5d:0e:94:5c:2f:d8"
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: printenv > .env
+      - run: touch .env
+      - run: echo "REMOTE_HOST=$REMOTE_HOST" >> .env
+      - run: echo "REMOTE_USER=$REMOTE_USER" >> .env
+      - run: echo "REMOTE_APP_DIR=$REMOTE_APP_DIR" >> .env
+      - run: echo "SSH_AUTH_SOCK=/ssh-agent" >> .env
       - run: make fab-update
       - run: make fab-deploy
 
