@@ -3,12 +3,15 @@
 version: 2
 
 jobs:
+
   lint:
     machine: true
     steps:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: touch .env
       - run: make lint
+
   build:
     machine: true
     steps:
@@ -19,6 +22,7 @@ jobs:
       - run: docker build -t anthoitaker/randall .
       - run: docker push anthoitaker/randall:$CIRCLE_TAG
       - run: docker push anthoitaker/randall
+
   deploy:
     machine: true
     steps:
@@ -39,12 +43,14 @@ workflows:
   version: 2
   integration:
     jobs:
+
       - lint:
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /.*/
+
       - build:
           requires:
             - lint
@@ -53,6 +59,7 @@ workflows:
               ignore: /.*/
             tags:
               only: /.*/
+
       - deploy:
           requires:
             - build
