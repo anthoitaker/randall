@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import *
+from core.models import Cause, Solution, Symptom, System, Trouble
 
 
 class BaseAdmin(admin.ModelAdmin):

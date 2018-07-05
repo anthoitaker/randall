@@ -9,8 +9,8 @@ class Home(View):
 
 class Version(View):
     VERSION_PATH = 'version.txt'
-  
+
     def get(self, request):
-        with open(self.VERSION_PATH) as f:
-            version = f.read()
+        with open(self.VERSION_PATH) as version_file:
+            version = version_file.read()
             return HttpResponse(version)
