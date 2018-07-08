@@ -5,7 +5,7 @@ services:
     image: anthoitaker/randall
     container_name: randall-service
     environment:
-      DEBUG: False
+      DEBUG: "False"
       SECRET_KEY: ${RANDALL_SECRET_KEY}
       ALLOWED_HOST: ${RANDALL_ALLOWED_HOST}
       SENTRY_DSN: ${RANDALL_SENTRY_DSN}
