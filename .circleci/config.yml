@@ -12,6 +12,14 @@ jobs:
       - run: touch .env
       - run: make lint
 
+  test:
+    machine: true
+    steps:
+      - checkout
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: touch .env
+      - run: make test
+
   build:
     machine: true
     steps:
@@ -51,9 +59,18 @@ workflows:
             tags:
               only: /.*/
 
-      - build:
+      - test:
           requires:
             - lint
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /.*/
+
+      - build:
+          requires:
+            - test
           filters:
             branches:
               ignore: /.*/
