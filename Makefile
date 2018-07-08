@@ -14,6 +14,9 @@ inspect:
 lint:
 		$(DRUN) --name randall-lint --entrypoint $(PYLINT) randall
 
+test:
+		$(DRUN) --name randall-test --entrypoint python randall manage.py test
+
 build:
 		docker build -t anthoitaker/randall .
 
