@@ -42,6 +42,7 @@ class CleanDataPipeline(object):
     def _clean_text(self, text, dot=False):
         text = self.TAG_RE.sub('', text)
         text = text.replace(self.NON_BREAK_SPACE, ' ')
+        text = text.strip()
         clean_text = re.sub(' +', ' ', text)
         clean_text = clean_text + '.' if dot and clean_text[-1] != '.' else clean_text
         return clean_text
