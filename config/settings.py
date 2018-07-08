@@ -150,3 +150,9 @@ REST_FRAMEWORK = {
 RAVEN_CONFIG = {
     'dsn': os.getenv('SENTRY_DSN'),
 }
+
+
+# Red Green Unit Tests
+# https://github.com/stevematney/redgreenunittests
+
+TEST_RUNNER = "redgreenunittest.django.runner.RedGreenDiscoverRunner"
