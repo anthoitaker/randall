@@ -51,15 +51,18 @@ class Trouble(BaseModel):
 
     def list_symptoms(self):
         symptoms = Symptom.objects.filter(trouble=self.id)
-        return symptoms.values_list('description', flat=True)
+        symptoms_list = symptoms.values_list('description', flat=True)
+        return sorted(symptoms_list)
 
     def list_causes(self):
         causes = Cause.objects.filter(trouble=self.id)
-        return causes.values_list('description', flat=True)
+        causes_list = causes.values_list('description', flat=True)
+        return sorted(causes_list)
 
     def list_solutions(self):
         solutions = Solution.objects.filter(trouble=self.id)
-        return solutions.values_list('description', flat=True)
+        solutions_list = solutions.values_list('description', flat=True)
+        return sorted(solutions_list)
 
 class Symptom(BaseModel):
     description = models.TextField('Description')
