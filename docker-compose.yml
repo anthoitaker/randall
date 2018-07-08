@@ -1,15 +1,18 @@
-randall:
-  image: anthoitaker/randall
-  container_name: randall-service
-  environment:
-    - DEBUG=False
-    - SECRET_KEY=${RANDALL_SECRET_KEY}
-    - ALLOWED_HOST=${RANDALL_ALLOWED_HOST}
-    - SENTRY_DSN=${RANDALL_SENTRY_DSN}
-  volumes:
-    - "${RANDALL_VOLUME_DIR}:/data/randall"
-  expose:
-    - 80
-  ports:
-    - "80:80"
-  command: ["gunicorn", "config.wsgi", "-b", "0.0.0.0:80"]
+version: "3"
+
+services:
+  randall:
+    image: anthoitaker/randall
+    container_name: randall-service
+    environment:
+      DEBUG: False
+      SECRET_KEY: ${RANDALL_SECRET_KEY}
+      ALLOWED_HOST: ${RANDALL_ALLOWED_HOST}
+      SENTRY_DSN: ${RANDALL_SENTRY_DSN}
+    volumes:
+      - "${RANDALL_VOLUME_DIR}:/data/randall"
+    expose:
+      - "80"
+    ports:
+      - "80:80"
+    command: ["gunicorn", "config.wsgi", "-b", "0.0.0.0:80"]
