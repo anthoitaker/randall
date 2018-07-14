@@ -1,0 +1,199 @@
+[
+    {
+        "model": "core.system",
+        "pk": 1,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.666Z",
+            "updated_at": "2018-07-14T10:05:57.666Z",
+            "name": "System A"
+        }
+    },
+    {
+        "model": "core.system",
+        "pk": 2,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.666Z",
+            "updated_at": "2018-07-14T10:05:57.666Z",
+            "name": "System B"
+        }
+    },
+    {
+        "model": "core.trouble",
+        "pk": 1,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.675Z",
+            "updated_at": "2018-07-14T10:05:57.676Z",
+            "code": "A1234",
+            "title": "Title A",
+            "original_title": "Original Title A",
+            "description": "Description A",
+            "system": 1
+        }
+    },
+    {
+        "model": "core.trouble",
+        "pk": 2,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.675Z",
+            "updated_at": "2018-07-14T10:05:57.676Z",
+            "code": "B1234",
+            "title": "Title B",
+            "original_title": "Original Title B",
+            "description": "Description B",
+            "system": 2
+        }
+    },
+    {
+        "model": "core.trouble",
+        "pk": 3,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.675Z",
+            "updated_at": "2018-07-14T10:05:57.676Z",
+            "code": "C1234",
+            "title": "Title C",
+            "original_title": "Original Title C",
+            "description": "Description C",
+            "system": 2
+        }
+    },
+    {
+        "model": "core.symptom",
+        "pk": 1,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.686Z",
+            "updated_at": "2018-07-14T10:05:57.686Z",
+            "description": "Symptom A-A.",
+            "trouble": 1
+        }
+    },
+    {
+        "model": "core.symptom",
+        "pk": 2,
+        "fields": {
+            "created_at": "2018-07-14T10:06:04.126Z",
+            "updated_at": "2018-07-14T10:06:04.126Z",
+            "description": "Symptom A-B.",
+            "trouble": 1
+        }
+    },
+    {
+        "model": "core.symptom",
+        "pk": 3,
+        "fields": {
+            "created_at": "2018-07-14T10:06:04.126Z",
+            "updated_at": "2018-07-14T10:06:04.126Z",
+            "description": "Symptom B-A.",
+            "trouble": 2
+        }
+    },
+    {
+        "model": "core.symptom",
+        "pk": 4,
+        "fields": {
+            "created_at": "2018-07-14T10:06:04.126Z",
+            "updated_at": "2018-07-14T10:06:04.126Z",
+            "description": "Symptom C-A.",
+            "trouble": 3
+        }
+    },
+    {
+        "model": "core.cause",
+        "pk": 1,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.695Z",
+            "updated_at": "2018-07-14T10:05:57.695Z",
+            "description": "Cause A-A.",
+            "trouble": 1
+        }
+    },
+    {
+        "model": "core.cause",
+        "pk": 2,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.705Z",
+            "updated_at": "2018-07-14T10:05:57.705Z",
+            "description": "Cause A-B.",
+            "trouble": 1
+        }
+    },
+    {
+        "model": "core.cause",
+        "pk": 3,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.716Z",
+            "updated_at": "2018-07-14T10:05:57.716Z",
+            "description": "Cause A-C.",
+            "trouble": 1
+        }
+    },
+    {
+        "model": "core.cause",
+        "pk": 4,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.716Z",
+            "updated_at": "2018-07-14T10:05:57.716Z",
+            "description": "Cause B-A.",
+            "trouble": 2
+        }
+    },
+    {
+        "model": "core.cause",
+        "pk": 5,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.716Z",
+            "updated_at": "2018-07-14T10:05:57.716Z",
+            "description": "Cause C-A.",
+            "trouble": 3
+        }
+    },
+    {
+        "model": "core.solution",
+        "pk": 1,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.755Z",
+            "updated_at": "2018-07-14T10:05:57.755Z",
+            "description": "Solution A-A.",
+            "trouble": 1
+        }
+    },
+    {
+        "model": "core.solution",
+        "pk": 2,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.762Z",
+            "updated_at": "2018-07-14T10:05:57.762Z",
+            "description": "Solution A-B.",
+            "trouble": 1
+        }
+    },
+    {
+        "model": "core.solution",
+        "pk": 3,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.755Z",
+            "updated_at": "2018-07-14T10:05:57.755Z",
+            "description": "Solution B-A.",
+            "trouble": 2
+        }
+    },
+    {
+        "model": "core.solution",
+        "pk": 4,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.755Z",
+            "updated_at": "2018-07-14T10:05:57.755Z",
+            "description": "Solution B-B.",
+            "trouble": 2
+        }
+    },
+    {
+        "model": "core.solution",
+        "pk": 5,
+        "fields": {
+            "created_at": "2018-07-14T10:05:57.755Z",
+            "updated_at": "2018-07-14T10:05:57.755Z",
+            "description": "Solution C-A.",
+            "trouble": 3
+        }
+    }
+]
