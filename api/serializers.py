@@ -29,6 +29,12 @@ class ExtendedTroubleSerializer(TroubleSerializer):
     causes = serializers.ListField(child=serializers.CharField())
     solutions = serializers.ListField(child=serializers.CharField())
 
+    def create(self, validated_data):
+        raise NotImplementedError()
+
+    def update(self, instance, validated_data):
+        raise NotImplementedError()
+
     def to_representation(self, instance):
         representation = super(ExtendedTroubleSerializer, self).to_representation(instance)
         representation['symptoms'] = instance.list_symptoms()

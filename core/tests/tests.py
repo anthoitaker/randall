@@ -1,5 +1,5 @@
 from django.test import TestCase
-from core.models import Cause, Solution, Symptom, System, Trouble
+from core.models import Cause, Solution, Symptom, Trouble
 
 class TroubleTestCase(TestCase):
     fixtures = ['core/tests/fixtures.json']
@@ -8,13 +8,13 @@ class TroubleTestCase(TestCase):
         self.trouble = Trouble.objects.first()
 
         symptoms = Symptom.objects.filter(trouble=self.trouble)
-        self.EXPECTED_SYMPTOMS = sorted(symptoms.values_list('description', flat=True))
+        self.expected_symptoms = sorted(symptoms.values_list('description', flat=True))
 
         causes = Cause.objects.filter(trouble=self.trouble)
-        self.EXPECTED_CAUSES = sorted(causes.values_list('description', flat=True))
+        self.expected_causes = sorted(causes.values_list('description', flat=True))
 
         solutions = Solution.objects.filter(trouble=self.trouble)
-        self.EXPECTED_SOLUTIONS = sorted(solutions.values_list('description', flat=True))
+        self.expected_solutions = sorted(solutions.values_list('description', flat=True))
 
     def test_trouble_representation(self):
         assert self.trouble.code == str(self.trouble)
@@ -30,12 +30,12 @@ class TroubleTestCase(TestCase):
 
     def test_list_symptoms(self):
         symptoms = self.trouble.list_symptoms()
-        assert self.EXPECTED_SYMPTOMS == symptoms
+        assert self.expected_symptoms == symptoms
 
     def test_list_causes(self):
         causes = self.trouble.list_causes()
-        assert self.EXPECTED_CAUSES == causes
+        assert self.expected_causes == causes
 
     def test_list_solutions(self):
         solutions = self.trouble.list_solutions()
-        assert self.EXPECTED_SOLUTIONS == solutions
+        assert self.expected_solutions == solutions

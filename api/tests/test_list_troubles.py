@@ -6,7 +6,6 @@ from core.models import Trouble
 class ListTroublesTestCase(APITestCase):
     fixtures = ['api/tests/fixtures.json']
 
-    @classmethod
     def setUp(self):
         self.troubles_count = Trouble.objects.count()
 
@@ -47,7 +46,7 @@ class ListTroublesTestCase(APITestCase):
 
         response = self.client.get(url, data=data, format='json')
         self.assertEqual(status.HTTP_200_OK, response.status_code)
-        
+
         for result in response.data['results']:
             trouble = Trouble.objects.get(code=result['code'])
 
@@ -67,7 +66,7 @@ class ListTroublesTestCase(APITestCase):
 
         response = self.client.get(url, data=data, format='json')
         self.assertEqual(status.HTTP_200_OK, response.status_code)
-        
+
         for result in response.data['results']:
             trouble = Trouble.objects.get(code=result['code'])
 
