@@ -3,7 +3,7 @@ DRUN = $(DOCKER_COMPOSE) run --rm
 FABFILE = utils/fabric/fabfile.py
 PYLINT = utils/lint/pylint.sh
 
-.PHONY: run inspect build push fab-update fab-deploy
+.PHONY: run inspect lint test build push fab-update fab-deploy
 
 run:
 		$(DRUN) --name randall-service --service-ports randall
