@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from core.models import Trouble
 
 
 class TroubleSerializer(serializers.Serializer):
@@ -41,3 +42,23 @@ class ExtendedTroubleSerializer(TroubleSerializer):
         representation['causes'] = instance.list_causes()
         representation['solutions'] = instance.list_solutions()
         return representation
+
+
+class SystemSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+
+    def create(self, validated_data):
+        raise NotImplementedError()
+
+    def update(self, instance, validated_data):
+        raise NotImplementedError()
+
+    def to_representation(self, instance):
+        troubles = Trouble.objects.all()
+        troubles = troubles.filter(system__name=instance.name)
+        troubles_count = troubles.count()
+
+        return {
+            'name': instance.name,
+            'troubles': troubles_count,
+        }
