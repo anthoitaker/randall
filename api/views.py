@@ -1,4 +1,5 @@
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -31,18 +32,12 @@ class TroubleList(ListCreateAPIView):
 class TroubleDetail(APIView):
 
     def get(self, request, dtc):
-        trouble = self.get_object(dtc)
+        code = dtc.upper()
+        trouble = get_object_or_404(Trouble, code=code)
         mode = request.query_params.get('mode')
         trouble_serializer_factory = TroubleSerializerFactory(mode)
         serializer = trouble_serializer_factory.get_serializer(trouble)
         return Response(serializer.data)
-
-    def get_object(self, code):
-        try:
-            code = code.upper()
-            return Trouble.get_trouble(code)
-        except Trouble.DoesNotExist:
-            raise Http404
 
 
 class SystemList(ListCreateAPIView):
@@ -61,3 +56,30 @@ class SystemList(ListCreateAPIView):
         order_param = self.request.query_params.get('order', self.DEFAULT_ORDER)
         order = order_param if order_param in self.ORDERING_TYPES else self.DEFAULT_ORDER
         return System.objects.order_by(order)
+
+
+class SymptomList(ListCreateAPIView):
+
+    def list(self, request, dtc):
+        code = dtc.upper()
+        trouble = get_object_or_404(Trouble, code=code)
+        symptoms = trouble.list_symptoms()
+        return Response(symptoms)
+
+
+class CauseList(ListCreateAPIView):
+
+    def list(self, request, dtc):
+        code = dtc.upper()
+        trouble = get_object_or_404(Trouble, code=code)
+        causes = trouble.list_causes()
+        return Response(causes)
+
+
+class SolutionList(ListCreateAPIView):
+
+    def list(self, request, dtc):
+        code = dtc.upper()
+        trouble = get_object_or_404(Trouble, code=code)
+        solutions = trouble.list_solutions()
+        return Response(solutions)
