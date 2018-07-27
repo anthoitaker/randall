@@ -4,20 +4,12 @@ version: 2
 
 jobs:
 
-  build:
-    machine: true
-    steps:
-      - checkout
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: echo $CIRCLE_TAG > version.txt
-      - run: docker build -t anthoitaker/randall:$CIRCLE_TAG .
-      - run: docker build -t anthoitaker/randall .
-
   lint:
     machine: true
     steps:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t anthoitaker/randall .
       - run: bash utils/envvars/export.sh
       - run: make lint
 
@@ -26,14 +18,18 @@ jobs:
     steps:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t anthoitaker/randall .
       - run: bash utils/envvars/export.sh
       - run: make test
 
-  push:
+  build:
     machine: true
     steps:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: echo $CIRCLE_TAG > version.txt
+      - run: docker build -t anthoitaker/randall:$CIRCLE_TAG .
+      - run: docker build -t anthoitaker/randall .
       - run: docker push anthoitaker/randall:$CIRCLE_TAG
       - run: docker push anthoitaker/randall
 
@@ -54,16 +50,7 @@ workflows:
   integration:
     jobs:
 
-      - build:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /.*/
-
       - lint:
-          requires:
-            - build
           filters:
             branches:
               ignore: /.*/
@@ -79,7 +66,7 @@ workflows:
             tags:
               only: /.*/
 
-      - push:
+      - build:
           requires:
             - test
           filters:
@@ -90,7 +77,7 @@ workflows:
 
       - deploy:
           requires:
-            - push
+            - build
           filters:
             branches:
               ignore: /.*/
