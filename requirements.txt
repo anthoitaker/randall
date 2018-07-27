@@ -11,3 +11,4 @@ raven==6.9.0
 redgreenunittest==0.1.1
 Scrapy==1.5.0
 scrapydo==0.2.2
+whitenoise==3.3.1
