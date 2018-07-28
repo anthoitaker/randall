@@ -181,3 +181,9 @@ TEST_RUNNER = "redgreenunittest.django.runner.RedGreenDiscoverRunner"
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda x: DEBUG,
 }
+
+
+# Django Admin
+# https://docs.djangoproject.com/en/2.0/ref/contrib/admin/
+
+ADMIN_SITE_HEADER = 'Randall'

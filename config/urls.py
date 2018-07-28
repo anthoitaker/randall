@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
 
+admin.site.site_header = settings.ADMIN_SITE_HEADER
+
 urlpatterns = [
     path('', include('web.urls')),
     path('api/', include('api.urls')),
