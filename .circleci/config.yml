@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t anthoitaker/randall .
-      - run: bash utils/envvars/export.sh
+      - run: bash tools/envvars/export.sh
       - run: make lint
 
   test:
@@ -19,7 +19,7 @@ jobs:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t anthoitaker/randall .
-      - run: bash utils/envvars/export.sh
+      - run: bash tools/envvars/export.sh
       - run: make test
 
   build:
@@ -41,7 +41,7 @@ jobs:
           fingerprints:
             - "50:0a:21:c1:3a:1e:7a:c2:f7:48:5d:0e:94:5c:2f:d8"
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: bash utils/envvars/export.sh
+      - run: bash tools/envvars/export.sh
       - run: make fab-update
       - run: make fab-deploy
 

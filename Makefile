@@ -1,21 +1,28 @@
 DOCKER_COMPOSE = docker-compose -f docker-compose.dev.yml
 DRUN = $(DOCKER_COMPOSE) run --rm
-FABFILE = utils/fabric/fabfile.py
-PYLINT = utils/lint/pylint.sh
+MANAGE = $(DRUN) --entrypoint python randall manage.py
+FABFILE = tools/fabric/fabfile.py
+PYLINT = tools/lint/pylint.sh
 
-.PHONY: run inspect lint test build push fab-update fab-deploy
+.PHONY: up exec lint test migrate migrations build push fab-update fab-deploy
 
-run:
-		$(DRUN) --name randall-service --service-ports randall
+up:
+		$(DOCKER_COMPOSE) up -d randall
 
-inspect:
-		docker exec -it randall-service /bin/bash
+exec:
+		$(DOCKER_COMPOSE) exec randall /bin/bash
 
 lint:
-		$(DRUN) --name randall-lint --entrypoint $(PYLINT) randall
+		$(DRUN) --entrypoint /bin/bash randall $(PYLINT)
 
 test:
-		$(DRUN) --name randall-test --entrypoint python randall manage.py test
+		$(MANAGE) test
+
+migrate:
+		$(MANAGE) migrate
+
+migrations:
+		$(MANAGE) makemigrations
 
 build:
 		docker build -t anthoitaker/randall .
@@ -24,7 +31,7 @@ push:
 		docker push anthoitaker/randall
 
 fab-update:
-		$(DRUN) --name randall-fab fabric -f $(FABFILE) update
+		$(DRUN) fabric -f $(FABFILE) update
 
 fab-deploy:
-		$(DRUN) --name randall-fab fabric -f $(FABFILE) deploy
+		$(DRUN) fabric -f $(FABFILE) deploy
