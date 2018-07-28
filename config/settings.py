@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'raven.contrib.django.raven_compat',
     'debug_toolbar',
+    'logentry_admin',
     'rest_framework',
     'core',
     'api',
