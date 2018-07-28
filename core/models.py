@@ -64,6 +64,7 @@ class Trouble(BaseModel):
         solutions_list = solutions.values_list('description', flat=True)
         return sorted(solutions_list)
 
+
 class Symptom(BaseModel):
     description = models.TextField('Description')
     trouble = models.ForeignKey(Trouble, on_delete=models.CASCADE)
