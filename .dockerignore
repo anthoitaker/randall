@@ -1,7 +1,6 @@
 .git
 Dockerfile
 .gitignore
-README.md
 LICENSE
 .vscode
 .dockerignore
