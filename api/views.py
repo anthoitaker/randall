@@ -1,5 +1,3 @@
-from django.http import Http404
-from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -7,6 +5,7 @@ from core.models import System, Trouble
 from .factories import TroubleSerializerFactory
 from .pagination import PageSizePagination
 from .serializers import SystemSerializer
+from .shortcuts import get_trouble_or_404
 
 
 class TroubleList(ListCreateAPIView):
@@ -33,7 +32,7 @@ class TroubleDetail(APIView):
 
     def get(self, request, dtc):
         code = dtc.upper()
-        trouble = get_object_or_404(Trouble, code=code)
+        trouble = get_trouble_or_404(code=code)
         mode = request.query_params.get('mode')
         trouble_serializer_factory = TroubleSerializerFactory(mode)
         serializer = trouble_serializer_factory.get_serializer(trouble)
@@ -62,7 +61,7 @@ class SymptomList(ListCreateAPIView):
 
     def list(self, request, dtc):
         code = dtc.upper()
-        trouble = get_object_or_404(Trouble, code=code)
+        trouble = get_trouble_or_404(code=code)
         symptoms = trouble.list_symptoms()
         return Response(symptoms)
 
@@ -71,7 +70,7 @@ class CauseList(ListCreateAPIView):
 
     def list(self, request, dtc):
         code = dtc.upper()
-        trouble = get_object_or_404(Trouble, code=code)
+        trouble = get_trouble_or_404(code=code)
         causes = trouble.list_causes()
         return Response(causes)
 
@@ -80,6 +79,6 @@ class SolutionList(ListCreateAPIView):
 
     def list(self, request, dtc):
         code = dtc.upper()
-        trouble = get_object_or_404(Trouble, code=code)
+        trouble = get_trouble_or_404(code=code)
         solutions = trouble.list_solutions()
         return Response(solutions)
