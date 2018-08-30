@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.views import View
+from config import settings
 import markdown2
 
 
@@ -17,6 +18,10 @@ class Version(View):
     VERSION_PATH = 'version.txt'
 
     def get(self, request):
+        if settings.DEBUG:
+            version = 'dev'
+            return HttpResponse(version)
+
         with open(self.VERSION_PATH) as version_file:
             version = version_file.read()
             return HttpResponse(version)
