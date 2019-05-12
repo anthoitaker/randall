@@ -17,3 +17,4 @@ def deploy():
         run('docker-compose -f deploy.yml up -d randall')
         run('docker exec -it randall-service python manage.py migrate')
         run('docker exec -it randall-service python manage.py collectstatic --noinput --clear')
+        run('docker-compose -f deploy.yml restart')
