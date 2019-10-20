@@ -15,9 +15,10 @@ services:
     command: ["runserver", "0.0.0.0:9000"]
 
   fabric:
-    image: geshan/fabric-alpine
+    image: dolphm/fabric
     env_file: .env
     volumes:
       - "${SSH_AUTH_SOCK}:/ssh-agent"
       - ".:/app"
+    working_dir: /app
     entrypoint: ["fab"]
