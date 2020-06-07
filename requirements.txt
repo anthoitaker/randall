@@ -1,4 +1,4 @@
-Django==2.2.10
+Django==2.2.13
 django-debug-toolbar==1.9.1
 django-filter==1.1.0
 django-logentry-admin==1.0.4
